@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        # Ensure this annotation is present for IRSA
+        eks.amazonaws.com/role-arn: "arn:aws:iam::064827688814:role/ugp-backend-sa-role"
+    spec:
+      serviceAccountName: ugp-backend-service-account
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 5000
+        env: # ADD THIS SECTION
+        - name: DYNAMODB_TABLE_NAME
+          value: "{{ .Values.dynamoDbTableName }}" # Passed from values.yaml
+        - name: AWS_REGION # Explicitly set the region for boto3
+          value: "us-east-1"

@@ -1,0 +1,6 @@
+image:
+  repository: 064827688814.dkr.ecr.us-east-1.amazonaws.com/ugp-eks-cicd-backend-repository
+  tag: latest
+
+# Add this new value for DynamoDB integration
+dynamoDbTableName: "ugp-eks-cicd-messages-table" # IMPORTANT: Ensure this matches your actual DynamoDB table name
