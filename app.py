@@ -25,7 +25,7 @@ logging.info("Flask application starting up... Demo Change to release")
 # --- DynamoDB Initialization ---
 DYNAMODB_TABLE_NAME = os.environ.get('DYNAMODB_TABLE_NAME',
                                      'ugp-eks-cicd-messages-table')
-AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
+AWS_REGION = os.environ.get('AWS_REGION', 'ap-south-1')
 
 logging.info(
     "Initializing DynamoDB resource for table '%s' in region '%s'...",
