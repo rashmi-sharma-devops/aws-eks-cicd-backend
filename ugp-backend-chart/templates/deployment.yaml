@@ -25,4 +25,4 @@ spec:
         - name: DYNAMODB_TABLE_NAME
           value: "{{ .Values.dynamoDbTableName }}" # Passed from values.yaml
         - name: AWS_REGION # Explicitly set the region for boto3
-          value: "us-east-1"
+          value: "ap-south-1"
